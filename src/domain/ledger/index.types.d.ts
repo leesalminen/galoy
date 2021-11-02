@@ -222,10 +222,8 @@ interface ILedgerService {
 
   settlePendingLnPayments({
     paymentHash,
-    payment,
   }: {
     paymentHash: PaymentHash
-    payment: LnPaymentLookup
   }): Promise<boolean | LedgerServiceError>
 
   voidLedgerTransactionsForJournal(
