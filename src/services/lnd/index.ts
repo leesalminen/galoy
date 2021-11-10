@@ -277,7 +277,7 @@ const lookupPaymentByPubkeyAndHash = async ({
       lnd,
       id: paymentHash,
     })
-    const { is_confirmed, is_failed, payment } = result
+    const { is_confirmed, is_failed, payment, pending } = result
 
     const status = is_confirmed
       ? PaymentStatus.Settled
@@ -314,6 +314,18 @@ const lookupPaymentByPubkeyAndHash = async ({
         roundedUpFee: toSats(payment.safe_fee),
         secret: payment.secret,
         amount: toSats(payment.tokens),
+      })
+    } else if (pending) {
+      paymentLookup = Object.assign(paymentLookup, {
+        status,
+        createdAt: new Date(pending.created_at),
+        destination: pending.destination,
+        paymentHash: pending.id,
+        milliSatsAmount: toMilliSatsFromString(pending.mtokens),
+        paths: pending.paths || [],
+        paymentRequest: pending.request,
+        secret: pending.secret,
+        amount: toSats(pending.tokens),
       })
     }
 
