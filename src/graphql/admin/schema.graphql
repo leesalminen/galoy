@@ -210,7 +210,7 @@ type SettlementViaIntraLedger {
   counterPartyWalletId: WalletId
 
   """
-  Settlement destination: Could be null the payee does not have a username
+  Settlement destination: Could be null if the payee does not have a username
   """
   counterPartyUsername: Username
 }
