@@ -30,6 +30,10 @@ export class CouldNotFindWalletFromOnChainAddressesError extends CouldNotFindErr
 export class CouldNotFindAccountFromUsernameError extends CouldNotFindError {}
 export class CouldNotFindAccountFromPhoneError extends CouldNotFindError {}
 
+export class RewardMissingMetadataError extends DomainError {}
+export class RewardNonValidTypeError extends DomainError {}
+export class RewardInsufficientBalanceError extends DomainError {}
+
 export class ValidationError extends DomainError {}
 export class InvalidSatoshiAmount extends ValidationError {}
 export class SatoshiAmountRequiredError extends ValidationError {}

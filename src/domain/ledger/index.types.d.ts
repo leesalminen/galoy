@@ -89,7 +89,7 @@ type IntraledgerTxArgs = {
   liabilitiesAccountId: LiabilitiesAccountId
   description: string
   sats: Satoshis
-  recipientLiabilitiesAccountId: LiabilitiesAccountId | null
+  recipientLiabilitiesAccountId: LiabilitiesAccountId
   payerUsername: Username | null
   recipientUsername: Username | null
   memoPayer: string | null
@@ -158,7 +158,7 @@ interface ILedgerService {
     liabilitiesAccountId: LiabilitiesAccountId,
   ): Promise<number | LedgerServiceError>
 
-  getAccountBalance(
+  getWalletBalance(
     liabilitiesAccountId: LiabilitiesAccountId,
   ): Promise<Satoshis | LedgerServiceError>
 
@@ -215,6 +215,10 @@ interface ILedgerService {
 
   addUsernameIntraledgerTxSend(
     args: AddUsernameIntraledgerTxSendArgs,
+  ): Promise<LedgerJournal | LedgerServiceError>
+
+  addPublicWalletIdIntraledgerTxSend(
+    args: AddIntraLedgerTxSendArgs,
   ): Promise<LedgerJournal | LedgerServiceError>
 
   settlePendingLnPayments(paymentHash: PaymentHash): Promise<boolean | LedgerServiceError>

@@ -197,6 +197,9 @@ export const mapError = (error: ApplicationError): CustomApolloError => {
     case "CouldNotFindAccountFromPhoneError":
     case "PhoneProviderServiceError":
     case "UnknownPhoneProviderServiceError":
+    case "RewardMissingMetadataError":
+    case "RewardNonValidTypeError":
+    case "RewardInsufficientBalanceError":
       return new UnknownClientError({ message, logger: baseLogger })
 
     default:
