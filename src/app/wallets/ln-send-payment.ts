@@ -545,6 +545,9 @@ const executePaymentViaLn = async ({
     } else {
       payment.paymentRequest = payment.paymentRequest || paymentRequest
       payment.paymentHash = payment.paymentHash || paymentHash
+      if (payment.status === "failed") {
+        payment.paymentDetails = undefined
+      }
       const persistedPayment = await LnPaymentsRepository().update(payment)
       if (persistedPayment instanceof Error) {
         paymentLogger.error(
