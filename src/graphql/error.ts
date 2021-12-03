@@ -195,3 +195,25 @@ export class InvoiceDecodeError extends CustomApolloError {
     })
   }
 }
+
+export class InvalidCoordinatesError extends CustomApolloError {
+  constructor(errData: CustomApolloErrorData) {
+    super({
+      message: "Latitude must be between -90 and 90 and longitude between -180 and 180",
+      forwardToClient: true,
+      code: "INVALID_COORDINATES",
+      ...errData,
+    })
+  }
+}
+
+export class InvalidTitleLengthError extends CustomApolloError {
+  constructor(errData: CustomApolloErrorData) {
+    super({
+      message: "Title should be between 3 and 100 caracters long",
+      forwardToClient: true,
+      code: "INVALID_TITLE",
+      ...errData,
+    })
+  }
+}
